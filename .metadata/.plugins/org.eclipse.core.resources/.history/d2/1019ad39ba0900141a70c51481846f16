@@ -1,0 +1,9 @@
+<?php
+	require_once("includes/config.php");
+	global $table_list;
+	global $detailed_tables_list;
+	include_once 'includes/navigation.php';
+	
+	echo print_home_page_elements($detailed_tables_list);
+	
+	include_once 'includes/footer.php';

@@ -1,0 +1,21 @@
+<?php
+	//this PHP file exports the selected data into Excel
+	require_once("Classes/PHPExcel.php");
+	try {
+		//create instance of excel sheet
+		$sheet = new PHPExcel();
+		$sheet->getProperties()->setDescription('text');
+		
+		//center horizontally and vertically
+		$sheet->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_DISTRIBUTED);
+		$sheet->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		$sheet->getDefaultStyle()->getFont()->setName('Calibri');
+		
+		$sheet->setActiveSheetIndex(0);
+		$activeSheet = $sheet->getActiveSheet();
+		$activeSheet->getPageSetup()->setFitToWidth(1)
+									->setFitToHeight(0);
+		
+	} catch (Exception $e) {
+		$error = $e->getMessage();
+	}

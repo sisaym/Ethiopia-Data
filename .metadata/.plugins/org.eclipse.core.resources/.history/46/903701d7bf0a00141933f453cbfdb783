@@ -1,0 +1,229 @@
+// javascript files used to generate the charts in the maps
+
+$(document).ready(function(){
+	//basic chart options 
+	var chart_data;
+	var $chart_type = "spline";
+	var chart;
+	var options = {
+		chart: {
+			type: $chart_type,
+			zoomType: 'x'
+		},
+		credits:{
+			text: ''
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories: []
+		},
+		series:[]
+	};
+	//add series to chart
+	chart = $("#chart_container").highcharts(options).highcharts();
+	function update_chart(){
+		var page_name = get_page_name();
+		if(page_name != "index"){
+			var json_file_name = "includes/" + page_name + ".json";
+			$.getJSON(json_file_name, function(data){
+				var xcategories = get_table_categories(data, "Year");
+				chart.xAxis[0].setCategories(xcategories);
+				
+				// add the series to the chart
+			var field_list = create_field_list(data);
+			$.each(field_list, function(field_idx, field_name){
+				var data_array = [];
+				var field_name = field_name;
+				$.each(data, function(idx, item){
+					$.each(item, function(index, value){
+						if(index == field_name){
+							// to avoid problem of missing data
+							if(value>=0){
+								data_array.push(parseFloat(value,0));
+							}
+						}
+					});
+				});
+				chart.addSeries({name: field_name, data: data_array});
+				chart.redraw();
+			});
+				
+			});
+		}
+	};
+	update_chart();
+
+	// js function to change the chart types
+		$(".chart_button").on('click', function(){
+			$chart_type = $(this).attr('id');
+			options.chart['type'] = $chart_type;
+			chart = $("#chart_container").highcharts(options).highcharts();
+			update_chart();
+			
+		});
+		
+	//bring the data to the table-div 
+	var table_header = "";
+	var table_name = "national account statistics";
+	table_header = "<h1 class='table_header'>" + table_name + "</h1>";
+	function populate_table(){
+		$table_div = $(".table_div");
+		$table_div.append(table_header);
+	}
+	//function to populate the data in a table
+	function populate_table(){
+		var page_name = get_page_name();
+		if(page_name != "index"){
+			var $table_div_html = "";
+			var json_file_name = "includes/" + page_name + ".json";
+			$.getJSON(json_file_name, function(data){
+				//$table_div_html contains the html of the table
+				
+				//get the table_div object
+				$table_div = $(".table_div");
+				var header_title = page_name.replace("_", " ");
+				var header_text = "<h1>" + header_title + " table</h1>";
+				$table_div_html += header_text;
+				//calls a js function to create a table out of the json array
+				var table_text = create_table(data);
+				$table_div_html += table_text;
+				$table_div.html($table_div_html);
+			});
+		}
+	}
+	
+	populate_table();
+	// a function to get the name of the current page without the .php extension
+	function get_page_name(){
+		var pagePathName= window.location.pathname;
+	    var pagename = pagePathName.substring(pagePathName.lastIndexOf("/") + 1);
+	    //split the page name using . to split it into the name and the .php
+	    var pagename_array = pagename.split(".");
+	    var current_page_name = pagename_array[0];
+	    return current_page_name;
+	}
+
+
+	// function to create a table from json file
+	function create_table($json_data){
+		var table_data = "";
+		//get the title of the table cells
+		var idx_array =[];
+		$.each($json_data, function(idx, item){
+			if(idx==1){
+				$.each(item, function(idx, value){
+					if(idx != "id"){
+						idx_array.push(idx);
+					}
+				});
+			}
+		});
+		//add the table column labels
+		table_data += create_table_columns(idx_array);
+		//add the table column values
+		table_data += print_table_data($json_data);
+		
+		table_data += "</tbody></table></div>";
+		return table_data;
+	}
+
+	// this function prints only the table headings
+	function create_table_columns(column_list){
+		//add div to have responsive table
+		var $header = "";
+		$header += "<div class='table-responsive'><table class='table table-bordered table-condensed table-hover'><thead><tr>";
+		//now print the headings of the table
+		for(i =0; i<column_list.length; i++){
+			$header += "<th>" + column_list[i] + "</th>";
+		};
+		//close the heading row and thead
+		$header += "</thead></tr><tbody>";
+		return $header;
+	}
+	//this function prints the actual data of the table
+	function print_table_data(json_data){
+		$table_data = "";
+		$.each(json_data, function(idx, item){
+			//skip the first index elements
+			$table_data += "<tr>";
+			$.each(item, function(index, value){
+				if(index != "id"){
+					var $indvalue = $.isNumeric(value) ? parseFloat(value) : value;
+					$table_data += "<td>" + $indvalue + "</td>";
+				}
+			})
+			$table_data += "</tr>";			
+		});
+		return $table_data;	
+	}
+	//get categories of a column
+	function get_table_categories($json_data, category_name){
+		var categories =[];
+		$.each($json_data, function(idx, item){
+			//loop inside each data row
+			$.each(item, function(index, value){
+				if(index == category_name){
+					categories.push(value);
+				}
+			});
+			
+		});
+		return categories;
+	}
+	
+	function create_field_list(json_data){
+		var idx_array =[];
+		$.each(json_data, function(idx, item){
+			if(idx==1){
+				$.each(item, function(idx, value){
+					if(idx != "id" && idx!= "Year"){
+						idx_array.push(idx);
+					}
+				});
+			}
+		});
+		return idx_array;
+	}
+
+	//function to create the homepage charts
+	function home_page_charts(){
+		function update_chart(){
+			var page_name = get_page_name();
+			if(page_name == "index"){
+				$(".chart_container").each(function(index,item){
+					var $chart_div = $(this);
+					var chart_div_id = $chart_div.attr('id');
+					var json_file_name = "includes/" + item + ".json";
+					$.getJSON(json_file_name, function(data){
+						var xcategories = get_table_categories(data, "Year");
+						chart.xAxis[0].setCategories(xcategories);
+						
+						// add the series to the chart
+					var field_list = create_field_list(data);
+					$.each(field_list, function(field_idx, field_name){
+						var data_array = [];
+						var field_name = field_name;
+						$.each(data, function(idx, item){
+							$.each(item, function(index, value){
+								if(index == field_name){
+									// to avoid problem of missing data
+									if(value>=0){
+										data_array.push(parseFloat(value,0));
+									}
+								}
+							});
+						});
+						chart.addSeries({name: field_name, data: data_array});
+						chart.redraw();
+					});
+				});
+					
+				});
+			}
+		};
+		update_chart();
+	}
+
+}); <!-- end document.ready -->

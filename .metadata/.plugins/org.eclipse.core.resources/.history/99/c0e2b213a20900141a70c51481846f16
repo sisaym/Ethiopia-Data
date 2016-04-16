@@ -1,0 +1,7 @@
+<?php
+	require_once("includes/config.php");
+	global $table_list;
+	include_once 'includes/navigation.php';
+	
+	
+	include_once 'includes/footer.php';

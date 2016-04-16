@@ -1,0 +1,5 @@
+// this javascript code is a helper to achieve some browser inconsistencies
+
+// function to achieve equal height columns
+
+$(".major_data_points_container").equalHeights();

@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block left_sidbar %}
+<div id="accordion" class="panel-group" role="tablist">
+    <div class="panel panel-success">
+        <div class="panel-heading" role="tab" id="first">
+            <div class="panel-title">
+                <a href="#first" data-toggle=collapse"
+                data-parent="#accordion">Trade <span class="caret"></span></a>
+            </div>
+            <div class="panel-collapse collapse-in" data-target="#first"></div>
+        </div>
+    </div>
+    <div class="collapse" id="first">
+        <div class="panel-body">
+            <p><a href="{% url 'data:exports' %}">Exports</a></p>
+            <p><a href="{% url 'data:imports' %}">Imports</a></p>
+        </div>
+    </div>
+{#    second group #}
+    <div class="panel panel-success">
+        <div class="panel-heading" role="tab" id="agriculture">
+            <div class="panel-title">
+                <a href="#first" data-toggle=collapse"
+                data-parent="#accordion">Agricultural Statistics</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-collapse collapse  in" id="first">
+        <div class="panel-body">
+            <p><a href="#">Crop production</a></p>
+            <p><a href="#">Agricultural
+                Input use
+            </a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

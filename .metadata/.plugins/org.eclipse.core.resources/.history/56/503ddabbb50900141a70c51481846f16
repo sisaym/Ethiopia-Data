@@ -1,0 +1,6 @@
+// this javascript code is a helper to achieve some browser inconsistencies
+
+$(".major_data_points").each(function(idx, elem){
+	
+})
+

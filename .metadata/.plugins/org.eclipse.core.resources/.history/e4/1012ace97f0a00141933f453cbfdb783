@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="chart_container"></div>
+<script src="js/jquery.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/ethdata.js"></script>
+<script type="text/javascript">
+	function create_table($json_data){
+		//get the title of the table cells
+		var idx_array =[];
+		$.each($json_data, function(idx, item){
+			idx_array += idx;
+		});
+		idx_array = $.unique(idx_array);
+		
+	}
+
+
+</script>
+</body>
+</html>

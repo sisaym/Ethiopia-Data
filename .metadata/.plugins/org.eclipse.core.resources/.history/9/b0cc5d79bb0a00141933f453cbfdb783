@@ -1,0 +1,118 @@
+<?php
+	require_once("config.php");
+	// bring the global $detailed_tables_list variable to print the home page elements
+	global $detailed_tables_list;
+	// this function prints the navigation menu elements taking the list from the tables_list array
+	function print_menu_links($menu_list){
+		$menu_links_text = "";
+		foreach ($menu_list as $menu_index=>$menu_title){
+			$menu_links_text .=  "<li><a href='". $menu_index . ".php'>" . $menu_title . "</a></li>";
+		}
+		return $menu_links_text;
+	}
+	
+	//check whether the page is home page - if it is return true
+	function isHome_Page(){
+		if(basename($_SERVER['PHP_SELF'])=="index.php"){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// function to print the home page elements showing the description of the data sets available in the site
+	function print_home_page_elements($detailed_tables_list){
+		$home_page_elements = ""; $table_description ="";
+		$home_page_elements .= "<div class='container major_data_points_container'><div class='row'>";
+		//iterate over each major data points
+		$table_description .= "";
+		foreach($detailed_tables_list as $table => $contents){
+			$table_description .= "<div class='col-lg-4 col-md-6 col-xs-12'>";
+			$table_description .= "<div class='panel panel-default'><div class='panel-heading'>";
+			$table_description .= "<div class='panel-title'><p>" . 	$contents['name'] . " statistics</p></div>";
+			$table_description .= "<p>" . $contents['description'] . "</p>";
+			$table_description .= "<p><b>Source: </b>" . 		$contents['source'] . "</p></div>"; //close heading and title panels
+			$table_description .= "<div class='panel-body'>";
+			$table_description .= "<div class='chart_container'>" . $contents['chart'] . "</div>";
+			$table_description .= "</div>";// close panel-body div
+			$table_description .= "<div class='panel-footer'>";
+			$table_description .= "<span><a class='btn brn-primary btn-primary' href='" .$table . ".php'>" . " <span class='glyphicon glyphicon-download-alt'></span> " . $contents['data']. "</a></span>";
+			$table_description .= "<span> </span><span><a class='btn btn-success' href='" .$table . ".php'>" . " <span class='glyphicon glyphicon-search'></span> " .$contents['page']. "</a></span>";
+			$table_description .= "</div></div>"; // close footer panel and the panel
+			$table_description .= "</div>";
+		}
+		$home_page_elements .= $table_description . "</div></div>";
+		return $home_page_elements;
+	}
+	
+	//this function prints the description of the table under view
+	function print_table_desctiption($base_site_name){
+		global $detailed_tables_list;
+		$table_description = "";
+		foreach($detailed_tables_list as $table=>$contents){
+			if($table == $base_site_name){
+				$table_description .= "<div class='panel panel-primary'><div class='panel-heading'>";
+				$table_description .= "<div class='panel-title'><p>" . 	$contents['name'] . " statistics</p></div>";
+				$table_description .= "<p>" . $contents['description'] . "</p>";
+				$table_description .= "<p><b>Source: </b>" . 		$contents['source'] . "</p></div>"; //close heading and title panels
+				$table_description .= "</div>";
+			}
+		}
+		return $table_description;
+	}
+	// this function prints the contents of the pages other than the home page
+	function print_page_contents(){
+		$base_site_name = base_site_name ();
+		$page_content = "";
+		$page_content .= "<div class='alert alert-success'>" . print_table_title($base_site_name) . " statistics</div>";
+		// print the chart div row
+		$page_content .= "<div class='container'><div class='row'><div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 chart_wrapper'><div id='chart_buttons'>" .print_chart_buttons() . "</div>";
+		$page_content .= "<div id='chart_container'>chart container</div>";
+		$page_content .= "</div></div>"; // container,row and cols closed
+		//print the description and download buttons
+		$page_content .= "<div class='row'><div class='col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-log-6 col-md-6 col-sm-6 col-xs-6'>" . print_table_desctiption($base_site_name) . "</div>";
+		$page_content .= "<div class='col-lg-3 col-md-3 col-xs-3'><a class='btn btn-success btn-lg btn-responsive' href='" . $base_site_name . "'>Download data</a></div>";
+		
+		$page_content .= "</div><div class='container'><hr></div></div></div>";//close the container div
+		$page_content .= print_table_div();
+		return $page_content;
+	}
+	
+	
+//function to generate the base site name - the name of the database table
+function base_site_name() {
+	$base_site = basename($_SERVER['PHP_SELF']);
+	$base_site_name = str_ireplace(".php", "", $base_site);
+	return $base_site_name;
+}
+
+//get the table name or page link
+	function print_table_title($base_site_name){
+		return ucfirst(str_ireplace("_", " ", $base_site_name));
+	}
+	
+	// print the table data for each page
+	function print_table_div(){
+		$table_div = "";
+		$table_div = "<div class='table_div'></div>";
+		return $table_div;
+		
+	}
+	
+	//print the chart buttons used to change the type of chart
+	function print_chart_buttons(){
+		$buttons = "";
+		$buttons .= <<<BUTTONS
+		<button type='button' class='chart_button btn btn-default' id='line'>Line</button>
+		<button type='button' class='chart_button btn btn-default' id='bar'>Bar</button>
+		<button type='button' class='chart_button btn btn-default' id='column'>Column</button>
+		<button type='button' class='chart_button btn btn-default' id='area'>Area</button>
+		<button type='button' class='chart_button btn btn-default' id='spline'>Spline</button>
+BUTTONS;
+		return $buttons;
+	}
+	function return_column_titles($json_file){
+		$json_data = file_get_contents($json_file);
+		$data_array = json_decode($json_data,true);
+		print($data_array);
+	}

@@ -1,0 +1,4 @@
+<?php
+	require_once("config.php");
+	global $table_list;
+	include_once 'includes/navigation.php';

@@ -1,0 +1,18 @@
+<?php
+	require_once("includes/config.php");
+	require_once 'includes/eth_connect.php';
+	//print the navigation
+	include_once 'includes/navigation.php';
+	
+	//print the page contents
+	echo print_page_contents();
+
+	//print footer contents
+	include_once 'includes/footer.php';
+?>
+	<script type="text/javscript" src="js/jquery.js"></script>
+	<script type="text/javscript" src="js/highcharts.js"></script>
+	<script type="text/javscript" src="styles/js/bootstrap.min.js"></script>
+	<script type="text/javscript" src="js/ethdata.js"></script>
+</body>
+</html>

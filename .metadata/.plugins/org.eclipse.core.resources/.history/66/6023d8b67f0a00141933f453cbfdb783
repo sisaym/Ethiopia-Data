@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="chart_container"></div>
+<script src="js/jquery.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/ethdata.js"></script>
+<script type="text/javascript">
+
+
+
+</script>
+</body>
+</html>

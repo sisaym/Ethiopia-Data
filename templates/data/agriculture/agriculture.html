@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% load humanize %}
+{% block content %}
+<h1>Agricultural statistics are here Sisay</h1>
+<form method="post" action="search/" class="form" role="form">
+    {% csrf_token %}
+    <p>{{ form }}
+        <input type="submit" name="search" value="search"/>
+    </p>
+</form>
+{% if data %}
+    <table class="table table-responsive table-condensed table-bordered">
+    <thead>
+    <tr>
+        <td>Year</td>
+        <td>Crop</td>
+        <td>Production (Quintals)</td>
+        <td>Area cultivated (Hectares)</td>
+        <td>Number of farmers</td>
+        <td>Yield (Qt/ha)</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+    <tr>
+        <td>
+            <a href="{{ row.year }}/">
+                {{ row.year.european_year }}
+            </a>
+        </td>
+        <td>
+            <a href="{{ row.crop|slugify }}/">
+                {{ row.crop }}
+            </a>
+        </td>
+        <td align="right">
+            {{ row.production_in_quintal|floatformat:0|intcomma }}</td>
+        <td align="right">
+            {{ row.area_cultivate_in_hectares|floatformat:0|intcomma }}</td>
+        <td align="right">
+            {{ row.farmers_growing_crop|floatformat:0|intcomma }}</td>
+        <td align="right">
+            {{ row.yield_in_quintal_per_hectare|floatformat:2|intcomma }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endif %}
+{% endblock %}

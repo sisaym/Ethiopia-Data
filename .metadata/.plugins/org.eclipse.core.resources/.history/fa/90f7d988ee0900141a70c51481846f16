@@ -1,0 +1,11 @@
+<?php
+	require_once("includes/config.php");
+	require_once 'includes/eth_connect.php';
+	//print the navigation
+	include_once 'includes/navigation.php';
+	
+	//print the page contents
+	echo print_page_contents();
+	echo get_by_table();
+	//print footer contents
+	include_once 'includes/footer.php';

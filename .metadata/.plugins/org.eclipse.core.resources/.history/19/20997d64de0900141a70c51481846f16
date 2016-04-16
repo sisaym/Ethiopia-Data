@@ -1,0 +1,7 @@
+<?php
+	require_once 'config.php';
+	
+	function get_by_table($table_name){
+		//select the table
+		mysqli_connect(DB_SERVER, DB_USER, DB_PASS, $table_name);
+	}

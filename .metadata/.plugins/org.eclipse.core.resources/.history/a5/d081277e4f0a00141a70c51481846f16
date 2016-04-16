@@ -1,0 +1,30 @@
+<?php
+	$footer = <<<FOOTER
+	<div class="jumbotron " id="footerdiv">
+			<div class="container"
+			<div class="row">
+			<div class="col-log-4 col-md-4 col-xs-4">
+			<h2>2014 <a href="http://sisaymenji.drupalgardens.com">Sisay Menji</a></h2>
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-1"></div>
+			<div class="col-lg-7 col-md-7 col-xs-7">
+				<h2>Related Sites</h2>
+				<a href="http://eeacon.org">Ethiopian Economics Association</a><br>
+				<a href="http://www.csa.gov.et">Ethiopian Central Statistical Agency</a><br>
+				<a href="http://moefed.gov.et">Ministry of Finance and Economic Development</a><br>
+				<a href="http://nbe.gov.et">National Bank of Ethiopia</a><br>
+				<a href="http://data.worldbank.org">World Bank Open data</a><br>
+			</div>
+			</div><!-- row class ends -->
+			</div><!-- container class ends -->
+	</div><!-- jumbotron ends here -->
+	<script type="text/javscript" src="js/jquery.js"></script>
+	<script type="text/javscript" src="js/highcharts.js"></script>
+	<script type="text/javscript" src="styles/js/bootstrap.min.js"></script>
+	<script type="text/javscript" src="js/ethdata.js"></script>
+</body>
+</html>
+FOOTER;
+
+	echo $footer;
+	

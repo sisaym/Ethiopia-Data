@@ -1,0 +1,10 @@
+<?php
+	//this PHP file exports the selected data into Excel
+	require_once("Classes/PHPExcel.php");
+	try {
+		//create instance of excel sheet
+		$sheet = new PHPExcel();
+		
+	} catch (Exception $e) {
+		$error = $e->getMessage();
+	}

@@ -1,0 +1,9 @@
+<?php
+	require_once("includes/config.php");
+	global $table_list;
+	global $detailed_tables_list;
+	include_once 'includes/navigation.php';
+	
+// 	echo print_page_contents($page_name);
+	echo $_SERVER['SCRIPT_FILENAME'] . " : " . $_SERVER['PHP_SELF'] ;
+	include_once 'includes/footer.php';

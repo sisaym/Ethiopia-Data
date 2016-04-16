@@ -1,0 +1,19 @@
+<?php
+	$footer = <<<FOOTER
+	<div class="jumbotron">
+			<div class="footer1">
+			
+			</div>
+			<div class="footer2">
+			
+			</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="styles/js/bootstrap.min.js"></script>
+	<script src="js/ethdata.js"></script>
+</body>
+</html>
+FOOTER;
+
+	echo $footer;

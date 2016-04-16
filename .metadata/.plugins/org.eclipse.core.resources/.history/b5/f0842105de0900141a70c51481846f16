@@ -1,0 +1,6 @@
+<?php
+	require_once 'config.php';
+	
+	function get_by_table($table_name){
+		
+	}

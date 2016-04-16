@@ -1,0 +1,78 @@
+<?php
+	//configuration file
+	//List of tables available in the database
+	$tables_list = array(
+		"national_account"=>"National Account",
+		"government_finance"=>"Government Finance",
+		"external_sector"=>"External Sector",
+		"human_resource"=>"Human Resource",
+		"investment"=>"Investment",
+		"prices"=>"Prices",
+		"exchange_rate"=>"Exchange Rates",
+		"climate"=>"Climate"		
+	);
+	
+	//detailed list of tables
+	$detailed_tables_list = array(
+		"national_account"=> array(
+			"name"=>"National Account",
+			"description"=>"Contains national account statistics including GDP",
+			"source"=>"Ethiopian Economics Association data disc 2012",
+			"chart"=>"This is a chart placeholder",
+			"data"=>"Download data",
+			"page"=>"Explore data"
+		),
+		"government_finance"=> array(
+				"name"=>"Government Finance",
+				"description"=>"Contains Government revenue and expenditure data",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"external_sector"=> array(
+				"name"=>"External Sector",
+				"description"=>"Contains External sector statistics including import and exports.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"human_resource"=> array(
+				"name"=>"Human Resource",
+				"description"=>"Contains statistics on labor force participation, health, population and realted.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"investment"=> array(
+				"name"=>"Investment",
+				"description"=>"Contains statistics on private and government investment.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"prices"=> array(
+				"name"=>"Prices",
+				"description"=>"Contains inflation data",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"national_account"=> array(
+				"name"=>"National Account",
+				"description"=>"Contains national account statistics including GDP",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"government_finance"=>"Government Finance",
+		""=>"External Sector",
+		""=>"Human Resource",
+		""=>"Investment",
+		""=>"Prices",
+		"exchange_rate"=>"Exchange Rates",
+		"climate"=>"Climate"
+	);

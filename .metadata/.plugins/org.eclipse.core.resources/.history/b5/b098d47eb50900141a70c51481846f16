@@ -1,0 +1,14 @@
+// this javascript code is a helper to achieve some browser inconsistencies
+
+$major_data_points = $(".major_data_points");
+$.each(".major_data_points", function(item, index){
+//	var height = 0 + height;
+//	if(height < item.height()){
+//		height = item.height();
+//	} else {
+//		height = height;
+//	}
+//	console.log(height);
+	console.log(item.height());
+});
+

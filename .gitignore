@@ -45,3 +45,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Image files
+.jpg
+.pnj
+.logo
+
+#zip files
+.zip
+
+# database files
+.sqlite
+.sqlite3
+.sql

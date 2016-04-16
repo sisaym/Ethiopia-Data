@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+#searchdiv {
+	display: inline-block;
+	float: right;
+}
+
+
+#footerdiv {
+	margin-bottom: 0px;
+}
+
+.major_data_points_container  .panel-heading {
+	height: 140px;
+}
+/* this is the table-div below the page footer in absolute position */
+.table_div {
+	position:fixed;
+	top: 5%;
+	background: #ccc;
+	margin-bottom: 0px;
+	padding: 2%;
+	border: 2px solid black;
+	width: 100%;
+	z-index:20;
+	overflow: auto;
+}
+#chart_buttons {
+	float: right;
+	margin: 0px;
+}
+#chart_container {
+	width: 100%;
+	float: left;
+	top: 0px;
+}
+//styling for chart wrapper class
+.chart_wrapper {
+	width: 100%;
+	padding: 0%;
+}
+/* styling for the header of the table */
+.table_header {
+	background: green;
+}

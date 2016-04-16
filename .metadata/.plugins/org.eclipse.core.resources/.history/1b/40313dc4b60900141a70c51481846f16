@@ -1,0 +1,12 @@
+// this javascript code is a helper to achieve some browser inconsistencies
+
+$(function(){
+	
+	$(".major_data_points").each(function(idx, elem){
+	}
+		var elem_height = elem.height();
+		console.log(elem_height);
+	});
+
+});
+	

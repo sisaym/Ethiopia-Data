@@ -1,0 +1,16 @@
+// this javascript code is a helper to achieve some browser inconsistencies
+
+// function to achieve equal height columns
+
+$(".major_data_points_container").equalHeights();
+
+$.each(".major_data_points", function(item, index){
+	var height = 0 + height;
+	if(height < item.height()){
+		height = item.height();
+	} else {
+		height = height;
+	}
+	console.log(height);
+});
+

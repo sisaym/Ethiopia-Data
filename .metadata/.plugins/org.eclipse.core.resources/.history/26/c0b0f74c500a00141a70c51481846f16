@@ -1,0 +1,31 @@
+@CHARSET "ISO-8859-1";
+#searchdiv {
+	display: inline-block;
+	float: right;
+}
+
+
+#footerdiv {
+	margin-bottom: 0px;
+}
+
+.major_data_points_container  .panel-heading {
+	height: 140px;
+}
+.table_div {
+	position: fixed;
+	bottom: 0px;
+	background: rgba(0,0,0,1);
+	border: 2px solid black;
+	width: 100%;
+	float: left;
+	z-index:10;
+	opacity: 0.4;
+}
+#chart_buttons {
+	float: right;
+}
+#chart_container {
+	width: 100%;
+	float: left;
+}

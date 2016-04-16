@@ -1,0 +1,18 @@
+<?php
+	require_once 'config.php';
+	
+	function get_by_table(){
+		$db_results = "";
+		//select the table
+		$table_name = base_site_name();
+		//@ used to suppress error message
+		$mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, $table_name);
+		//connect to the databse
+		if($mysqli){
+			$query = "select * from " . $table_name;
+			$db_results = mysqli_query($mysqli, $query);
+		} else {
+			echo "<h2 class='alert alert-warning'>Database connection failed</h2>" . mysqli_connect_error();
+		}
+	}
+	echo base_site_name();

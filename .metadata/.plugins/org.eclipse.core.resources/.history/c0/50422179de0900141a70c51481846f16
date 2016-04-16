@@ -1,0 +1,8 @@
+<?php
+	require_once 'config.php';
+	
+	function get_by_table(){
+		//select the table
+		$table_name = print_table_title(base($_SERVER['PHP_SELF']));
+		mysqli_connect(DB_SERVER, DB_USER, DB_PASS, $table_name);
+	}

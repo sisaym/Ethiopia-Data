@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load humanize %}
+{% block content %}
+{% if data %}
+    <h4>Import statistics for {{ item }}</h4>
+    <table class="table table-responsive table-condensed table-bordered">
+    <thead>
+    <tr>
+        <td>Year</td>
+        <td>Origin</td>
+        <td>Import Amount (Tons)</td>
+        <td>Import CIF value (USD)</td>
+        <td>Import CIF value (ETB)</td>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for row in data %}
+    <tr>
+        <td><a href="{{ row.year }}/">{{ row.year }}</a></td>
+        <td><a href="{{ row.origin|slugify }}/">{{ row.origin }}</a></td>
+        <td align="right">{{ row.Volume_in_tons|floatformat:0|intcomma }}</td>
+        <td align="right">{{ row.cif_Value_in_usd|floatformat:0|intcomma }}</td>
+        <td align="right">{{ row.cif_Value_in_etb|floatformat:0|intcomma }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endif %}
+{% endblock %}

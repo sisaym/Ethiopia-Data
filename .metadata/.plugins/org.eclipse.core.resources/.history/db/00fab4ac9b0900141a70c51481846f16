@@ -1,0 +1,25 @@
+<?php
+	//configuration file
+	//List of tables available in the database
+	$tables_list = array(
+		"national_account"=>"National Account",
+		"government_finance"=>"Government Finance",
+		"external_sector"=>"External Sector",
+		"human_resource"=>"Human Resource",
+		"investment"=>"Investment",
+		"prices"=>"Prices",
+		"exchange_rate"=>"Exchange Rates",
+		"climate"=>"Climate"		
+	);
+	
+	//detailed list of tables
+	$detailed_tables_list = array(
+		"national_account"=>"National Account",
+		"government_finance"=>"Government Finance",
+		"external_sector"=>"External Sector",
+		"human_resource"=>"Human Resource",
+		"investment"=>"Investment",
+		"prices"=>"Prices",
+		"exchange_rate"=>"Exchange Rates",
+		"climate"=>"Climate"
+	);

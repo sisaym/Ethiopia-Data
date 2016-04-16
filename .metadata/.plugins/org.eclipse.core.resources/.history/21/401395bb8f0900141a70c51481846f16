@@ -1,0 +1,15 @@
+<?php
+	//configuration file
+	$tables_list = array(
+		"national_account"=>"National Account",
+		"exchange_rate"=>"Exchange Rates",
+		"government_finance"=>"Government Finance",
+		"external_sector"=>"External Sector",
+		"human_resource"=>"Human Resource",
+		"investment"=>"Investment",
+		"Prices"=>"Prices",
+		
+			
+			
+			
+	)

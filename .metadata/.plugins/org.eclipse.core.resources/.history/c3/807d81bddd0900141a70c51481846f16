@@ -1,0 +1,90 @@
+<?php
+	//configuration file
+	
+	// define db connection constants
+	defined("DB_SERVER") ? 	null 	: 	define("DB_SERVER", "localhost");
+	defined("DB_USER") 	? 	null 	: 	define("DB_USER", "eth_data");
+	defined("DB_PASS") 	?  	null 	: 	define("DB_PASS", "root");
+	defined("DB_NAME") 	? 	null 	: 	define("DB_NAME", "eth_data");
+	
+	//List of tables available in the database
+	//home included to show the home page
+	$tables_list = array(
+		"index"=>"Home",
+		"national_account"=>"National Account",
+		"government_finance"=>"Government Finance",
+		"external_sector"=>"External Sector",
+		"human_resource"=>"Human Resource",
+		"investment"=>"Investment",
+		"prices"=>"Price",
+		"exchange_rate"=>"Exchange Rates",
+		"climate"=>"Climate"		
+	);
+	
+	//detailed list of tables
+	$detailed_tables_list = array(
+		"national_account"=> array(
+			"name"=>"National Account",
+			"description"=>"Contains national account statistics including GDP",
+			"source"=>"Ethiopian Economics Association data disc 2012",
+			"chart"=>"This is a chart placeholder",
+			"data"=>"Download data",
+			"page"=>"Explore data"
+		),
+		"government_finance"=> array(
+				"name"=>"Government Finance",
+				"description"=>"Contains Government revenue and expenditure data",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"external_sector"=> array(
+				"name"=>"External Sector",
+				"description"=>"Contains External sector statistics including import and exports.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"human_resource"=> array(
+				"name"=>"Human Resource",
+				"description"=>"Contains statistics on labor force participation, health, population and realted.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"investment"=> array(
+				"name"=>"Investment",
+				"description"=>"Contains statistics on private and government investment.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"price"=> array(
+				"name"=>"Price",
+				"description"=>"Contains inflation data",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"exchange_rate"=> array(
+				"name"=>"Exchange Rate",
+				"description"=>"Contains data on official and parrellel market exchange rates.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		),
+		"climate"=> array(
+				"name"=>"Climate",
+				"description"=>"Contains data on average rainfall and temperature.",
+				"source"=>"Ethiopian Economics Association data disc 2012",
+				"chart"=>"This is a chart placeholder",
+				"data"=>"Download data",
+				"page"=>"Explore data"
+		)
+	);

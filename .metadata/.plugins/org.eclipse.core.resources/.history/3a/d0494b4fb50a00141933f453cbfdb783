@@ -1,0 +1,4 @@
+<?php
+	//this PHP file exports the selected data into Excel
+	require_once("Classes/PHPExcel.php");
+	

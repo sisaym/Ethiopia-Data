@@ -1,0 +1,12 @@
+<?php
+	//configuration file
+	global TABLES_LIST = array(
+		"national_account"=>"National Account",
+		"government_finance"=>"Government Finance",
+		"external_sector"=>"External Sector",
+		"human_resource"=>"Human Resource",
+		"investment"=>"Investment",
+		"prices"=>"Prices",
+		"exchange_rate"=>"Exchange Rates",
+		"climate"=>"Climate"		
+	);

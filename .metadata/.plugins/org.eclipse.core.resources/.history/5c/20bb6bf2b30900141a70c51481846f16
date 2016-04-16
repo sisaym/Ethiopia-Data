@@ -1,0 +1,10 @@
+// this javascript code is a helper to achieve some browser inconsistencies
+
+// function to achieve equal height columns
+
+var equalheights = function(div_class){
+	var height = 0;
+	$.each("div_class", function(index, item){
+		height = 
+	});
+}
