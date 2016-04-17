@@ -1,1 +1,1 @@
-web: python manage.py runserver 0.0.0.0:$PORT
+web: gunicorn --env DJANGO_SETTINGS_MODULE=ethdata.settings ethdata.wsgi --log-file -
