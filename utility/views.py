@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from .models import HomePage, SubPages
 # Create your views here.
@@ -13,4 +13,7 @@ def return_home_pages_listfun(request):
 
 
     return render(request, 'utility/homepage_list.html',{'object_list': pages_list })
+
+class ApiPage(TemplateView):
+    template_name = 'utility/api.html'
 

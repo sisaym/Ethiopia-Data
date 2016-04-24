@@ -13,10 +13,8 @@ from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 
 # for production
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ethdata.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ethdata.settings")
 
-# for dev
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ethdata.dev-settings")
 
 
 application = get_wsgi_application()

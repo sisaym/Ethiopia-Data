@@ -8,4 +8,5 @@ from . import views
 urlpatterns = patterns('',
       # url(r'^$', views.HomePageList.as_view(), name="home"),
       url(r'^$', views.return_home_pages_list.as_view(), name="home"),
+
 )

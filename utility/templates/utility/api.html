@@ -1,0 +1,66 @@
+{% extends 'base_for_data.html' %}
+{% block title %} Ethiopia Statistics | API {% endblock %}
+{% block section_title %}
+    <h3 class="text text-success">API docs for Ethiopia statistics page.</h3>
+    <p>Note: this page will be updated and refined in the future.</p>
+{% endblock %}
+{% block main_content %}
+    <div class="alert alert-success">
+        <p>Developers can use the API in the page to query the data and get outputs in the form of XML and JSON.</p>
+        <p><span class="text text-warning">Please note that currently only read is allowed through the API and other CRUD operations are disabled,
+            see the details below on how to use the API for each of the data sets.</span> </p>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="text text-primary">Introduction</h2>
+            <h4>The api page for the data sets is available at <code>data/api/resource_name</code>, where <code>resource_name</code> is the resource name
+            for the data sets</h4>
+            <ul class="list-inline">
+                The resource name for the data sets available is
+                <li>Crop Statistics: <code>crop_data</code> </li>
+                <li>Import statistics: <code>imports</code></li>
+                <li>Export statistics: <code>exports</code></li>
+            </ul>
+            <p>The following brief example shows how to retrieve the data using the resource names for agricultural statistics</p>
+            <blockquote>
+                <p>Going to <code>api/data/crop_data</code> will give xml data for crop statistics.</p>
+                <a href="data/crop_data/" target="_blank">click here to give it a try</a>
+            </blockquote>
+
+        </div>
+        <div class="col-lg-12">
+            <h2 class="text text-primary">Agricultural statistics</h2>
+            <h4>The crop statistics API allows to retrieve data related to crop production, area coverage, yield and number of farmers growing a crop.</h4>
+            <p>In addition the data api allows the data to be filtered by year, and level of data.</p>
+            <blockquote>
+                <p>The resource_name for agricultural/crop statistics is <code>crop_data</code>, going to <code>api/data/crop_data</code> will give data for crop statistics. </p>
+                <p>To get xml data with 100 records write <code>api/data/crop_data/?format=xml&limit=100</code></p>
+                <a href="data/crop_data/?format=xml&limit=100" target="_blank">click here to give it a try</a>
+                <p>To get json data with 100 records write <code>api/data/crop_data/?format=json&limit=100</code></p>
+                <a href="data/crop_data/?format=json&limit=100" target="_blank">click here to give it a try</a>
+            </blockquote>
+        </div>
+        <div class="col-lg-12">
+            <h2 class="text text-primary">Import statistics</h2>
+            <h4>Import api allows to retrieve import statistics for Ethiopia by item, year, and origin.</h4>
+            <blockquote>
+                <p>The resource_name for import statistics is <code>imports</code>, going to <code>api/data/imports</code> will give data for import statistics. </p>
+                <p>To get xml data with 100 records write <code>api/data/imports/?format=xml&limit=100</code></p>
+                <a href="data/imports/?format=xml&limit=100" target="_blank">click here to give it a try</a>
+                <p>To get json data with 100 records write <code>api/data/imports/?format=json&limit=100</code></p>
+                <a href="data/imports/?format=json&limit=100" target="_blank">click here to give it a try</a>
+            </blockquote>
+        </div>
+        <div class="col-lg-12">
+            <h2 class="text text-primary">Export statistics</h2>
+            <h4>Import api allows to retrieve export statistics for Ethiopia by item, year, and destination.</h4>
+            <blockquote>
+                <p>The resource_name for import statistics is <code>exports</code>, going to <code>api/data/exports</code> will give data for exports statistics. </p>
+                <p>To get xml data with 100 records write <code>api/data/exports/?format=xml&limit=100</code></p>
+                <a href="data/exports/?format=xml&limit=100" target="_blank">click here to give it a try</a>
+                <p>To get json data with 100 records <code>api/data/exports/?format=json&limit=100</code></p>
+                <a href="data/exports/?format=json&limit=100" target="_blank">click here to give it a try</a>
+            </blockquote>
+        </div>
+    </div>
+{% endblock %}
