@@ -1,14 +1,13 @@
 __author__ = 'admin'
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.utils.text import slugify
-from django.db.models import Count,Avg,Sum
 
 from data.models import Crop, CropStatistics, Year, Region, Zone
-from data.forms import ExportForm, ImportForm, AgriculturalProduction, AgriculturalProductionForm
+from data.forms import AgriculturalProduction, AgriculturalProductionForm
 
 def agricultural_production(request, year=None, sub_group=None):
     context_dict = {}
+    form = AgriculturalProductionForm()
 
     if year==sub_group==None:
         crop_production = CropStatistics.objects.filter(
@@ -16,6 +15,8 @@ def agricultural_production(request, year=None, sub_group=None):
             '-year','-production_in_quintal')
 
         context_dict['data'] = crop_production
+        context_dict['form'] = form
+        context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
 
         return render(request, 'data/agriculture/agriculture.html', context_dict)
 
@@ -26,17 +27,19 @@ def agricultural_production(request, year=None, sub_group=None):
             '-year','-production_in_quintal')
 
         context_dict['data'] = crop_production
+        context_dict['form'] = form
+        context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
 
         return render(request, 'data/agriculture/agriculture.html', context_dict)
 
-    if sub_group!=None and year ==None:
+    if sub_group!=None and year==None:
         crop_production = CropStatistics.objects.filter(
             crop__sub_group_slug=sub_group, crop__data_identifier="Crop",
         zone__geo_choices="National",).order_by(
             '-year','-production_in_quintal')
-        page_title = sub_group + " production in Ethiopia"
-        context_dict['page_title'] = page_title
+        context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
         context_dict['data'] = crop_production
+        context_dict['form'] = form
 
         return render(request, 'data/agriculture/agriculture_national.html',
                       context_dict)
@@ -46,9 +49,9 @@ def agricultural_production(request, year=None, sub_group=None):
             crop__name_slug=sub_group, zone__geo_choices="Regional",
             year__year_code=year).order_by(
             '-year','-production_in_quintal')
-        page_title = sub_group + " regional production in " +  year
-        context_dict['page_title'] = page_title
+        context_dict['page_title'] = "Agricultural statistics at regional level, use the search box to change your preferences"
         context_dict['data'] = crop_production
+        context_dict['form'] = form
 
         return render(request, 'data/agriculture/agriculture_regional.html',
                       context_dict)
@@ -56,11 +59,10 @@ def agricultural_production(request, year=None, sub_group=None):
 
 def agricultural_production_search(request):
     context_dict = {}
-    form1 = AgriculturalProduction()
+    # form1 = AgriculturalProduction()
     form = AgriculturalProductionForm()
-    context_dict['form1'] = form1
+    # context_dict['form1'] = form1
     context_dict['form'] = form
-    context_dict['text'] = "Woops why"
 
     if request.method == 'GET':
         if request.GET['year'] != None:
@@ -80,6 +82,7 @@ def agricultural_production_search(request):
             '-year','-production_in_quintal')
 
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
         elif len(year)>0  and len(region)>0 and len(zone)==len(
@@ -95,6 +98,7 @@ def agricultural_production_search(request):
                     '-year','-production_in_quintal')
                 context_dict['level'] = "National"
                 context_dict['data'] = crop_production
+                context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
             elif data_level =="Regional":
                 crop_production = CropStatistics.objects.filter(
                     crop__data_identifier="Crop",year=year,
@@ -104,6 +108,7 @@ def agricultural_production_search(request):
 
                 context_dict['level'] = "Regional"
                 context_dict['data'] = crop_production
+                context_dict['page_title'] = "Agricultural statistics at regional level, use the search box to change your preferences"
 
 
             return render(request, 'data/agriculture/search.html', context_dict)
@@ -115,6 +120,7 @@ def agricultural_production_search(request):
                  '-year','-production_in_quintal')
             context_dict['level'] = "Zonal"
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at zonal level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
 
@@ -126,6 +132,7 @@ def agricultural_production_search(request):
                  '-year','-production_in_quintal')
             context_dict['level'] = "Regional"
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at regional level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
 
@@ -136,6 +143,7 @@ def agricultural_production_search(request):
                 region=region, zone=zone).order_by(
                  '-year','-production_in_quintal')
             context_dict['level'] = "Zonal"
+            context_dict['page_title'] = "Agricultural statistics at zonal level, use the search box to change your preferences"
             context_dict['data'] = crop_production
 
             return render(request, 'data/agriculture/search.html', context_dict)
@@ -147,6 +155,7 @@ def agricultural_production_search(request):
                 region=region, crop=crop).order_by(
                  '-year','-production_in_quintal')
             context_dict['level'] = "Regional"
+            context_dict['page_title'] = "Agricultural statistics at regional level, use the search box to change your preferences"
             context_dict['data'] = crop_production
 
             return render(request, 'data/agriculture/search.html', context_dict)
@@ -157,6 +166,7 @@ def agricultural_production_search(request):
                  '-year','-production_in_quintal')
             context_dict['level'] = "Zonal"
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at zonal level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
 
@@ -166,6 +176,7 @@ def agricultural_production_search(request):
                  '-year','-production_in_quintal')
             context_dict['level'] = "Zonal"
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at zonal level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
 
@@ -184,6 +195,7 @@ def agricultural_production_search(request):
                  '-year','-production_in_quintal')
             context_dict['level'] = data_level
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
 
@@ -204,19 +216,47 @@ def agricultural_production_search(request):
                  '-year','-production_in_quintal')
             context_dict['level'] = "Zonal"
             context_dict['data'] = crop_production
+            context_dict['page_title'] = "Agricultural statistics at zonal level, use the search box to change your preferences"
 
             return render(request, 'data/agriculture/search.html', context_dict)
 
         else:
-            response_txt = "you got here" + year + region + zone + crop + \
-                           "True/False: "
-            return HttpResponse(response_txt)
+            context_dict['page_title'] = "Your search didn't return results, try again or see agricultural statistics at national level, use the search box to change your preferences"
 
+            return render(request, 'data/agriculture/search.html', context_dict)
     else:
         crop_production = CropStatistics.objects.filter(
             crop__data_identifier="Sub", region__name="Ethiopia").order_by(
             '-year','-production_in_quintal')
 
         context_dict['data'] = crop_production
+        context_dict['page_title'] = "Your search didn't return results, try again or see agricultural statistics at national level, use the search box to change your preferences"
 
         return render(request, 'data/agriculture/search.html', context_dict)
+
+
+def get_national_data(request):
+
+    context_dict = {}
+    crop_production = CropStatistics.objects.filter(
+            crop__data_identifier="Sub", region__name="Ethiopia").order_by(
+            '-year','-production_in_quintal')
+    context_dict['level'] = 'National'
+    context_dict['page_title'] = "Agricultural statistics at national level, use the search box to change your preferences"
+    context_dict['data'] = crop_production
+    context_dict['form'] = AgriculturalProductionForm()
+
+    return render(request, 'data/agriculture/agriculture_national.html', context_dict)
+
+def get_regional_data(request):
+
+    context_dict = {}
+    crop_production = CropStatistics.objects.filter(
+            crop__data_identifier="Sub", zone__geo_choices="Regional").order_by(
+            '-year','-region','-production_in_quintal')
+    context_dict['level'] = 'Regional'
+    context_dict['page_title'] = "Agricultural statistics at regional level, use the search box to change your preferences"
+    context_dict['data'] = crop_production
+    context_dict['form'] = AgriculturalProductionForm()
+
+    return render(request, 'data/agriculture/agriculture_regional.html', context_dict)

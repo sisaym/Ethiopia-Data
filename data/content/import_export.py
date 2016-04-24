@@ -46,7 +46,9 @@ def export(request):
 
 
 def export_for_year(request, year, destination=None):
+    export_form = ExportForm()
     context_dict = {}
+    destination = destination
     if destination is None:
         exports = Export.objects.filter(year=year)
         exports = exports.values('destination').annotate(fob_Value_in_usd=Sum(
@@ -62,6 +64,7 @@ def export_for_year(request, year, destination=None):
 
         context_dict['data'] = exports
         context_dict['year'] = year
+        context_dict['form'] = export_form
 
         return render(request, 'data/exports/export_by_year.html', context_dict)
     else:
@@ -70,17 +73,23 @@ def export_for_year(request, year, destination=None):
             '-fob_Value_in_usd')
         context_dict['data'] = exports
         context_dict['year'] = year
-
+        context_dict['form'] = export_form
+        context_dict['destination'] = destination
+        
         return render(request, 'data/exports/export_by_year_destination.html', context_dict)
 
 
 def export_by_item(request, item, destination=None):
     context_dict = {}
+    export_form = ExportForm()
+    destination_name = "dest"
     if destination is None:
         exports = Export.objects.all().filter(item__name_slug=item).order_by(
             '-year')
         context_dict['item'] = item
         context_dict['data'] = exports
+        context_dict['form'] = export_form
+        context_dict['destination'] = destination_name
 
         return render(request, 'data/exports/export_by_item.html', context_dict)
 
@@ -90,7 +99,8 @@ def export_by_item(request, item, destination=None):
             '-year')
         context_dict['item'] = item
         context_dict['data'] = exports
-        context_dict['destination'] = destination
+        context_dict['form'] = export_form
+        context_dict['destination'] = destination_name
 
         return render(request, 'data/exports/export_by_item_destination.html', context_dict)
 
@@ -175,6 +185,7 @@ def import_for_year(request, year, origin=None):
         imports = Import.objects.filter(year=year, origin__name_slug=origin)
         context_dict['data'] = imports
         context_dict['year'] = year
+        context_dict['form'] = ImportForm()
         country = Country.objects.filter(
             name_slug=origin)
         country_name = country[0].name
@@ -195,6 +206,7 @@ def import_by_item(request, item, origin=None):
         return render(request, 'data/imports/import_by_item.html', context_dict)
 
     else:
+        # origin = origin.lower()
         imports = Import.objects.all().filter(item__name_slug=item,
                                               origin__name_slug=origin).order_by(
             '-year','-cif_Value_in_usd')

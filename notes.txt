@@ -1,0 +1,1 @@
+Static files are only set at utility level

@@ -1,0 +1,12 @@
+
+/*temporary solution to make list of pages on the home page equal heights*/
+.home_equal_columns {
+  height: 280px;
+}
+
+/* padding for height to account for fixed-top navbar*/
+body {
+  padding-top: 70px;
+}
+
+

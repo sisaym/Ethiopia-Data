@@ -1,0 +1,40 @@
+{% extends 'base_for_data.html' %}
+{% load humanize %}
+{% block section_title %} <h3 class="text text-primary">Export statistics</h3> {% endblock %}
+{% block main_content %}
+    <h3 class="alert alert-success">Search for exports</h3>
+<form method="get" action="{% url 'data_exports:export_search' %}" class="form" role="form">
+    {% csrf_token %}
+    <p>{{ form }}
+        <input type="submit" name="search" value="search"/>
+    </p>
+</form>
+{% if data %}
+    <h1>Export statistics for {{ year }}</h1>
+    <table class="table table-responsive table-condensed table-bordered">
+    <thead>
+    <tr>
+        <td>Year</td>
+        <td>Destination</td>
+        <td>Item</td>
+        <td>Export Amount (Tons)</td>
+        <td>Export FOB value (USD)</td>
+        <td>Export FOB value (ETB)</td>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for row in data %}
+    <tr>
+        <td><a href="{{ row.destination }}/">{{ row.year }}</a></td>
+        <td><a href="{{ row.destination }}/">{{ row.destination }}</a></td>
+        <td><a href="{{ row.destination }}/">{{ row.item }}</a></td>
+        <td align="right">{{ row.Volume_in_tons|floatformat:2|intcomma }}</td>
+        <td align="right">{{ row.fob_Value_in_usd|floatformat:2|intcomma }}</td>
+        <td align="right">{{ row.fob_Value_in_etb|floatformat:2|intcomma }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endif %}
+{% endblock %}

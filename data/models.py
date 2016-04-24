@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Model, Manager
 from django.utils.text import slugify
 from django.core.files.storage import FileSystemStorage
 # Create your models here.
@@ -172,26 +173,6 @@ class CropStatistics(models.Model):
 
 
 
-# *********************** UTILITY MODELS ******************************
 
-
-class HomeContent(models.Model):
-    home_fs = FileSystemStorage(location='/media/home_page')
-    status_choices = (
-        ("None", 'None'),
-        ('Updated', 'Updated'),
-        ('under_development', 'Under Development'),
-    )
-    title = models.CharField(max_length=200)
-    description = models.TextField(max_length=5000)
-    page_url = models.CharField(max_length=100)
-    # sub-pages-ul will contain comma separated page urls
-    sub_pages_url = models.CharField(max_length=300, help_text="Please insert comma separated list of pages urls", null=True)
-    bg_image =models.ImageField(null=True, default=None, storage=home_fs, upload_to="home_page")
-    glyphicon_class = models.CharField(max_length=100, null=True, default=None)
-    status = models.CharField(max_length=50,choices=status_choices, null=True, default=None)
-
-    def __str__(self):
-        return self.title
 
 

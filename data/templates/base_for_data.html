@@ -1,0 +1,46 @@
+{% extends 'utility/homepage_list.html' %}
+
+{% block content %}
+        <div class="container">
+        <div class="row">
+            <div class="alert alert-info">
+                {% block section_title %} {% endblock %}
+            </div>
+
+        </div>
+        <div class="row">
+        <div class="sidebar col-lg-3 col-md-3 col-sm-12  ">
+            {% block sidebar %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Browse other datasets</div>
+                    <div class="panel-body">
+
+                        <ul class="nav nav-pills nav-staked navbar-default">
+                            <li>
+                                <a href="{% url 'data_agriculture:agriculture' %}">Agricultural staitistics</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'data_agriculture:national_data' %}">National agricultural staitistics</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'data_agriculture:regional_data' %}">Regional agricultural staitistics</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'data_imports:imports' %}">Import staitistics</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'data_exports:exports' %}">Export staitistics</a>
+                            </li>
+                </ul>
+                    </div><!-- panel body -->
+                </div><!-- end panel -->
+            {% endblock %}
+        </div>
+        <div class="col-lg-9 col-lg-pull-0 col-md-9 col-sm-12">
+        {% block main_content %}  {% endblock %}
+        </div>
+        </div><!-- end content and sidebar row -->
+    </div><!-- end container class -->
+
+
+{% endblock  %}

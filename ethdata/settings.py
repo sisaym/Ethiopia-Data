@@ -20,11 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'n9!b&2^fz4mc41m5wsgvv!kcuv1ca_hhv)@jnvd89v%raq1(fl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# change in production to ['*'] or specific host
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,7 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'tastypie',
+    'utility',
     'data',
+    'publications',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,9 +96,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+# absolute file path static files will be collected by collectstatic for deployment
 STATIC_ROOT = "static_files"
 
+# static file url used by django to display
 STATIC_URL = '/static/'
 
 
